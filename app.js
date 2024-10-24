@@ -15,6 +15,7 @@ app.use(bodyParser.json());
 connectDB(); // Call the function to connect to the database
 
 
+
 app.use("/api/auth", authRoutes);
 
 // Use user data routes

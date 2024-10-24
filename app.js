@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const axios = require("axios")
+const cors = require("cors");  // Import CORS
 const userDataRoutes = require('./routes/userDataRoutes');
 const authRoutes = require('./routes/auth');
 const connectDB = require('./config/db');
@@ -10,6 +11,8 @@ const connectDB = require('./config/db');
 dotenv.config();
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());  // Use CORS middleware
+
 
 // Connect to MongoDB
 connectDB(); // Call the function to connect to the database

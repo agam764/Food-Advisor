@@ -15,6 +15,9 @@ app.use(bodyParser.json());
 connectDB(); // Call the function to connect to the database
 
 
+app.get("/", (req, res) => {
+  res.send("<h1>Welcome to the OCR Ingredient Analysis API</h1><p>Use the /api/ocr endpoint to analyze ingredients.</p>");
+});
 
 app.use("/api/auth", authRoutes);
 

@@ -29,16 +29,22 @@ app.post("/api/ocr", async (req, res) => {
   const { ingredients, allergy, diet } = req.body;
 
   // Pre-made prompt
-const prompt = `I want you to analyze ingredients from a food label and provide the following information: ingredients: ${ingredients}. Health Analysis: Identify any known health effects (positive or negative) of each ingredient, particularly focusing on allergies, additives, and any ingredients known to cause issues (e.g., high fructose corn syrup, trans fats). Personalized Dietary Recommendations: allergies: ${allergy}, dietary restrictions: ${diet}, tell me whether this product is safe or appropriate to consume based on my health profile. Summary: Provide a final summary classifying the product as healthy or unhealthy based on the ingredient analysis.`;
+  const prompt = `I want you to analyze ingredients from a food label and provide the following information: ingredients: ${ingredients}. Health Analysis: Identify any known health effects (positive or negative) of each ingredient, particularly focusing on allergies, additives, and any ingredients known to cause issues (e.g., high fructose corn syrup, trans fats). Personalized Dietary Recommendations: allergies: ${allergy}, dietary restrictions: ${diet}, tell me whether this product is safe or appropriate to consume based on my health profile. Summary: Provide a final summary classifying the product as healthy or unhealthy based on the ingredient analysis.`;
 
   try {
     const apiKey = process.env.API_KEY;  // Securely accessing the API key
     const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
     const postData = {
-      prompt: {
-        text: prompt
-      }
+      "contents": [
+        {
+          "parts": [
+            {
+              "text": prompt
+            }
+          ]
+        }
+      ]
     };
 
     const response = await axios.post(apiUrl, postData, {
@@ -48,7 +54,7 @@ const prompt = `I want you to analyze ingredients from a food label and provide 
     });
 
     // Check the structure of response.data and adjust if needed
-    const resultText = response.data.candidates?.[0]?.content || 'No response text available';
+    const resultText = response.data.candidates?.[0]?.content.parts[0].text;
     res.json({ reply: resultText });
 
   } catch (error) {

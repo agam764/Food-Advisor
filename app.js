@@ -65,5 +65,5 @@ Summary: Provide a final summary classifying the product as healthy or unhealthy
   }
 });
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

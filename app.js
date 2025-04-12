@@ -36,7 +36,8 @@ app.post("/api/ocr", async (req, res) => {
 
   try {
     const apiKey = process.env.API_KEY;  // Securely accessing the API key
-    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
+    const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}'; 
+    //`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
     const postData = {
       "contents": [
@@ -67,5 +68,5 @@ app.post("/api/ocr", async (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//const PORT = process.env.PORT || 5002;
+//`app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

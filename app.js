@@ -1,4 +1,5 @@
 const express = require("express");
+const port = process.env.PORT || 5000;
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const axios = require("axios")

@@ -1,5 +1,5 @@
 const express = require("express");
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 5002;
 const dotenv = require("dotenv");
 const bodyParser = require("body-parser");
 const axios = require("axios")
@@ -67,10 +67,9 @@ app.post("/api/ocr", async (req, res) => {
     res.status(500).send('Failed to fetch response');
   }
 });
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
-
-//const PORT = process.env.PORT || 5002;
-//`app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+//const PORT = process.env.PORT || 5000;
+//app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -67,6 +67,9 @@ app.post("/api/ocr", async (req, res) => {
     res.status(500).send('Failed to fetch response');
   }
 });
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
 
 
 //const PORT = process.env.PORT || 5002;
